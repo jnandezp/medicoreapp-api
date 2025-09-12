@@ -1,0 +1,10 @@
+services:
+  medicoreappapi:
+    env_file:
+      - ./.env
+    image: medicoreappapi
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
