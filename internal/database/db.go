@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/jnandezp/medicoreapp-api/internal/user/entities"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -16,6 +17,11 @@ var DB *gorm.DB
 func ConnectDB() {
 	var err error
 	var dsn string
+
+	err = godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error: No se pudo cargar el archivo .env. Asegúrate de que exista en la raíz del proyecto.")
+	}
 
 	// 2. Lee la variable para decidir qué driver usar
 	dbConnection := os.Getenv("DB_CONNECTION")
